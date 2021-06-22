@@ -1,0 +1,13 @@
+MAS rover_coursework {
+
+// DO NOT CHANGE THIS FILE
+	infrastructure: Centralised
+	environment:	rover.RoverWorld("demo.mas2j",  0, yes, "scenarios.json")
+
+
+	agents:
+		demo [max_load=5, scan_range=3, speed=1, mindinspector="gui(cycle,html,history)"] #1;
+		
+	aslSourcePath:
+		"src/asl";
+}

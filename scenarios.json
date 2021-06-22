@@ -1,0 +1,39 @@
+{
+    "scenarios": [
+
+    	{
+    		"id": 				0,
+    		"agCount":			1,
+    		"hasMultipleResources" : false,
+    		"height":			10,
+    		"initialEnergy":	5000,
+    		"isCompetitive":	false,
+    		"rsCount": 			1,
+    		"rsDist":			5,
+    		"width":			10
+    	},
+    	{
+    		"id": 				1,
+    		"agCount":			1,
+    		"hasMultipleResources" : false,
+    		"height":			20,
+    		"initialEnergy":	5000,
+    		"isCompetitive":	false,
+    		"rsCount": 			1,
+    		"rsDist":			5,
+    		"width":			20
+    	},
+    	{
+    		"id": 				2,
+    		"agCount":			3,
+    		"hasMultipleResources" : false,
+    		"height":			80,
+    		"initialEnergy":	5000,
+    		"isCompetitive":	false,
+    		"rsCount": 			1,
+    		"rsDist":			5,
+    		"width":			80
+    	}
+    	
+    ]
+}
