@@ -1,0 +1,20 @@
+MAS sample_rover {
+
+	infrastructure: Centralised
+	environment:	rover.RoverWorld("demo_scenario3.mas2j", "scenario.json",  3, yes, "1.1.4", 100)
+	
+	agents:
+			//scenario 3
+	scan [max_capacity = 0, scan_range = 4, speed = 5];
+	scan2 [max_capacity = 0, scan_range = 4, speed = 5];
+	coll [max_capacity = 5, scan_range = 0, speed = 4];
+		
+
+	
+	aslSourcePath:
+	//scenario3
+		"src/asl/scenario7";
+		
+		}
+
+

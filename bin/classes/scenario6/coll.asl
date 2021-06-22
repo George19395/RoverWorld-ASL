@@ -1,0 +1,66 @@
+location(0,0).
+num(0).
+
++! collectGold: goldAt(X,Y) & num(G) & G>0<- -goldAt(X,Y);
+							-+num(G-1);
+							.wait(500);
+							.print("GOING TO COLLECT GOLD");
+							?size(SizeX,SizeY);
+							scenario5.recalculateCoordinates(X,Y,SizeX,SizeY,RedX,RedY);
+							-+location(RedX,RedY);
+							-moveToBase;
+							+moveToGold;
+							move(RedX,RedY,1);
+//							-goldAt;
+							+at_gold;
+							! collect_gold.
+							
+
+
+
++! collectGold: num(G) & G==0 <- .print("DEPOSITED ALL GOLD");
+							.send(coll2,achieve,collectGold).
+
++! deposit_gold : true <- .print("depositing gold");
+							do(deposit);
+							if(not end_of_simulation(0)){
+								! deposit_gold;
+							}.
+							
+-! deposit_gold : true <- 	.print("i dont have gold to deposit");
+								!collectGold.
+						
+
+
+
+
++! collect_gold : true <-  .print("collecting gold");
+						   do(collect)
+						   ! collect_gold.
+						   
+-! collect_gold: true <- .print("I failed to collect gold").
+
+
+										
+//no resource here
++ result(collect, 3): at_gold <-  .print("COLLECTED ALL GOLD");
+								  .print("move to BASE");
+								  ?location(OldX,OldY);
+								  -at_gold;
+								  -+location(0,0);
+								  -moveToGold;
+								  +moveToBase;
+//								  -goldLocation;
+								  move(-OldX,-OldY,1);							  
+								 .print("AT BASE",0,0);
+								  ! deposit_gold.
++goldLocation(X,Y)[source(Ag)]: .count(goldLocation(_,_),L)  <-.print("STored Gold Location");
+							?num(G);
+//							-+num(G+1);
+							+goldAt(X,Y);
+//							.count(goldAt(X,Y),N);
+							-+num(L).
+//							-goldLocation(X,Y)[source(Ag)].
+							  
+
+//			   

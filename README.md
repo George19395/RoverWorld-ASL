@@ -2,16 +2,18 @@
 # CM30174/50206
 
 Template project for Rover coursework.
-This is part of a university project i did for the module Intelligent Agents. The enviroment was provided and we developed the agents and their logic.
+
+__<a name="bugs"></a>NOTE: You are encouraged to use the repository's issues tab to report bugs and requests features that are necessary.  Both would be addressed in a timely manner and would generally result in a new release. When a new release is available, a mail would be sent to everyone enrolled in the course detailing the changes and the new version string.__
 
 
 
 ## Getting Started
 
 1. [Installing Eclipse](https://wiki.eclipse.org/Eclipse/Installation) 
-2. [Installing Jason & Jason Eclipse plugin](http://jason.sourceforge.net/mini-tutorial/eclipse-plugin/)
+2. Installing Jason [ V2.2](https://kent.dl.sourceforge.net/project/jason/jason/version%202.2/jason-2.2a.zip) & [Jason Eclipse plugin](http://jason.sourceforge.net/mini-tutorial/eclipse-plugin/)
 3. Getting started with Jason (see Course reading list)
 4. Starting the course work
+
 
 
 ## Contents
@@ -38,7 +40,7 @@ This is part of a university project i did for the module Intelligent Agents. Th
 The environment for this coursework is provided as a jar file (`libs/rover_cw.jar`). 
 Using this environment requires the following line to be present in your coursework's mas2j file(s);
 
-__`environment:	rover.RoverWorld(<path_to_mas2j_file>,  <scenario_id>, <ui_option>, <scenario_file>)`__
+__`environment:	rover.RoverWorld(<path_to_mas2j_file>,  <scenario_file>, <scenarrio_id>, <ui_option>, <env_version>, <env_speed>)`__
 
 where;
 
@@ -50,8 +52,12 @@ _**ui_option**_: A Boolean flag which determines if a UI of the environment woul
 
 _**scenario_file**_: Path to JSON file containing scenario specifications.
 
+_**env_version**_: PA version strring specifying the version of the environment to use.
+
+_**env_speed**_: An interger between 1 and 100 which dictates the number of times the environment should run faster.
+
 example;
-__`environment:	rover.RoverWorld("demo.mas2j",  0, yes, "scenarios.json")`__
+__`environment:	rover.RoverWorld("demo.mas2j", "scenarios.json", 0, yes, "1.0.0", 10)`__
 
 
 _**NOTE**: If you choose to use this blank project, this has already been set up in the various mas2j files and would not require you to take additional action._
@@ -104,7 +110,26 @@ __*status_code*__: Integer code indicating the action execution success/error.
 example;
 __`result(scan, -1)`__ 
 
-Which means that an agent scanned the environment successfully but did not find any resource.
+Which means that an agent scanned the environment successfully but did not find any resource. 
+
+While moving, an Agent's journey may be broken into smaller journeys. Having insufficient energy or attempting to share a location may during the course of the journey would result in an error. The feedback that occurs when this happens has the signature;
+
+__`result(move, <status_code>, <x_displacement_to_initial_target_location>, <y_displacement_to_iniial_target_location>, <x_distance_traveled>, <y_distance_traveled>)`__
+
+where;
+
+
+__*status_code*__: Integer code indicating the action execution success/error.
+
+__*x_displacement_to_initial_target_location*__: How far Agent is from initial target location on the x-axis.
+
+__*y_displacement_to_initial_target_location*__: How far Agent is from initial target location on the y-axis.
+
+__*status_code*__: How far the Agent travelled before the error (on the x-axis).
+
+__*status_code*__: How far the Agent travelled before the error (on the y-axis).
+
+
 
 #### <a name="scan"></a>Scan
 Scanning allows Agents to identify items on the map. To scan, an Agent is expected to provide a range which is a positive non-zero integer that corresponds to the scan radius. The range affects the amount of energy consumed and specifying a range larger than the scan range of the agent would not cause it to scan further than it is allowed to.
@@ -132,10 +157,14 @@ __Note__: Agents would still be charged energy when scanning returns nothing.
    - Scan operations would not detect resources carried by other Agents.
    
    - Scan operations would not detect resources deposited at the base.
+   
+   
 
 
 #### <a name="move"></a>Move
 An agent may `move` around the map by specifying `displacement` and `speed`. Displacement is the distance to move along the `x` and `y` axis and is an integer (positive or negative) while speed is the travel speed which determines how fast an Agent would reach its destination.
+
+Travelling long distances would result in the breakdown of the overall journey into tiny steps based on the Agent's travel speed. During this journey, an Agent my intent to temporarily reside on an already occupied tile. When this happens, an Error would be emitted which contains information such as distance travelled and distance left. This would help with further planning.
 
 *syntax;* __`move(X, Y, S)`__
 
@@ -244,7 +273,13 @@ __<a name="pia"></a>NOTE__: For this coursework, you are limited to create inter
 
 As discussed above, revisions to the environment would result in the release of a new version. This means that a new `rover_cw.jar` file would be made available. When this occurs, navigate to the `release` tab of this repository to obtain the latest version. Every release would be accompanied with a version string, release timestamp and a Changelog detailing the issue(s) it addresses. Note: Issue here refers to issues logged on this repository.
 
-To use an update, simply replace the `rover.cw_jar` file located in the `libs` directory of your project with the new `rover_cw.jar` file and run your application. To ensure your Agent is working with the intended environment version, consider using the internal action `get_environment_version` as discussed above.
+To use an update, simply replace the following;
+
+	- The `rover.cw_jar` file located in the `libs` directory of your project with the new `rover_cw.jar` file.
+	- The `scenarios.json` file located in your project's root directory with the new `scenario.json` file. 
+	- Replace the `environment version string` in the project's `mas2j` file(s).
+	
+After replacing both files, run the application. To ensure your Agent is working with the intended environment version, you are required to update the version number in the `mas2j` file to ensure the environment runs. If for any reason your implementation requires a specific version of the environment, consider using the internal action `get_environment_version` as discussed above.
 
 
 ## Troubleshooting

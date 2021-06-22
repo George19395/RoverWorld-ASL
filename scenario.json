@@ -1,0 +1,107 @@
+{
+    "version" :  "1.0.4",
+    "scenarios": [
+    	{
+    		"id": 				1,
+    		"agCount":			1,
+    		"hasMultipleResources" : false,
+    		"height":			20,
+    		"initialEnergy":	6000,
+    		"isCompetitive":	false,
+    		"rsCount": 			1,
+    		"rsDist":			5,
+    		"width":			20
+    	},
+    	{
+    		"id": 				2,
+    		"agCount":			1,
+    		"hasMultipleResources" : false,
+    		"height":			40,
+    		"initialEnergy":	4000,
+    		"isCompetitive":	false,
+    		"rsCount": 			3,
+    		"rsDist":			5,
+    		"width":			40
+    	},
+    	{
+    		"id": 				3,
+    		"agCount":			3,
+    		"hasMultipleResources" : false,
+    		"height":			100,
+    		"initialEnergy":	4200,
+    		"isCompetitive":	false,
+    		"rsCount": 			8,
+    		"rsDist":			5,
+    		"width":			100
+    	},
+    	{
+    		"id": 				4,
+    		"agCount":			5,
+    		"hasMultipleResources" : true,
+    		"height":			200,
+    		"initialEnergy":	4800,
+    		"isCompetitive":	false,
+    		"rsCount": 			8,
+    		"rsDist":			5,
+    		"width":			200
+    	},
+	    {
+	    	"id": 5,
+	    	"agCount":  3,
+	    	"type": "random",
+	    	"energy_category": "high",
+	    	"hasMultipleResources" : false
+	    },
+	     {
+	    	"id": 6,
+	    	"agCount":  5,
+	    	"type": "random",
+	    	"energy_category": "medium",
+	    	"hasMultipleResources" : true
+	    }, 
+	    {
+	    	"id" : 7,
+	    	"note": "Demo Map",
+	    	"agCount":  1,
+	    	"height": 20,
+	    	"width": 20,
+	    	"initialEnergy": 5000,
+	    	"map": {
+	    		"base": [{
+	    					"location": { "x": 0, "y" :0 }, 
+	    					"name": "Team 0"
+	    					}
+	    				],
+	    		"resources": [
+	    			{
+		    			"location" : { "x" : 15, "y": 15 },
+		    			"qty": 7,
+		    			"type": 32
+	    			}
+	    		]
+	    	}
+	    },
+	    {
+	    	"id" : 8,
+	    	"note": "Demo Map",
+	    	"agCount":  2,
+	    	"height": 60,
+	    	"width": 60,
+	    	"initialEnergy": 5000,
+	    	"map": {
+	    		"base": [{
+	    					"location": { "x": 0, "y" :0 }, 
+	    					"name": "Team 0"
+	    					}
+	    				],
+	    		"resources": [
+	    			{
+		    			"location" : { "x" : 59, "y": 59 },
+		    			"qty": 5,
+		    			"type": 16
+	    			}
+	    		]
+	    	}
+	    }
+    ]
+}
