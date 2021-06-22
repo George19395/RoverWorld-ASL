@@ -2,8 +2,7 @@
 # CM30174/50206
 
 Template project for Rover coursework.
-
-__<a name="bugs"></a>NOTE: You are encouraged to use the repository's issues tab to report bugs and requests features that are necessary.  Both would be addressed in a timely manner and would generally result in a new release. When a new release is available, a mail would be sent to everyone enrolled in the course detailing the changes and the new version string.__
+This is part of a university project i did for the module Intelligent Agents. The enviroment was provided and we developed the agents and their logic.
 
 
 
